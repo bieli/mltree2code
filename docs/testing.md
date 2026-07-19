@@ -2,13 +2,13 @@
 
 ## Layers
 
-1. **Unit** — IR, loader, generators, optimizer (`tests/unit/`).
-2. **Integration / semantic** — generated Python `predict` must match
+1. **Unit** - IR, loader, generators, optimizer (`tests/unit/`).
+2. **Integration / semantic** - generated Python `predict` must match
    `model.predict` on random and fixture vectors (`tests/integration/`).
-3. **Golden** — formatting snapshots per language (`tests/golden/`).
-4. **Performance** — single-sample sklearn vs generated Python if-else
+3. **Golden** - formatting snapshots per language (`tests/golden/`).
+4. **Performance** - single-sample sklearn vs generated Python if-else
    (`tests/performance/`, marked `@pytest.mark.slow`).
-5. **Fixtures** — names live in `tests/model_fixtures.py`;
+5. **Fixtures** - names live in `tests/model_fixtures.py`;
    `scripts/generate_models.py` writes the same set (`make models`).
 
 ## Commands

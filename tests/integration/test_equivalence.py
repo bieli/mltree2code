@@ -11,7 +11,7 @@ from tests.model_fixtures import MODEL_FIXTURES
 
 def _exec_python_predict(code: str):
     ns: dict = {}
-    exec(code, ns)  # noqa: S102 — intentional for testing generated code
+    exec(code, ns)  # noqa: S102 - intentional for testing generated code
     return ns["predict"]
 
 

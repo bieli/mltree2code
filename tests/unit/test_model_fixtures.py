@@ -9,7 +9,7 @@ from tests.model_fixtures import MODEL_FIXTURES, OBSOLETE_FIXTURES
 def test_model_fixtures_catalog_matches_disk():
     on_disk = sorted(p.stem for p in MODELS_DIR.glob("*.joblib"))
     assert on_disk == sorted(MODEL_FIXTURES), (
-        "Disk fixtures drift from tests/model_fixtures.MODEL_FIXTURES — "
+        "Disk fixtures drift from tests/model_fixtures.MODEL_FIXTURES - "
         "run: python scripts/generate_models.py"
     )
 

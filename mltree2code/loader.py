@@ -22,7 +22,7 @@ def load_model(path: PathLike) -> Any:
 
     try:
         model = joblib.load(path)
-    except Exception as exc:  # noqa: BLE001 — surface as ModelLoadError
+    except Exception as exc:  # noqa: BLE001 - surface as ModelLoadError
         raise ModelLoadError(f"Failed to load model from {path}: {exc}") from exc
 
     validate_model(model)
@@ -39,7 +39,7 @@ def validate_model(model: Any) -> None:
         )
 
     if not hasattr(model, "tree_"):
-        raise UnsupportedModelError(f"Model '{name}' has no tree_ attribute — is it fitted?")
+        raise UnsupportedModelError(f"Model '{name}' has no tree_ attribute - is it fitted?")
 
     if getattr(model, "n_features_in_", None) is None:
         raise UnsupportedModelError(f"Model '{name}' does not look fitted.")

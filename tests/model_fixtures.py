@@ -1,6 +1,6 @@
 """Canonical joblib fixture names produced by scripts/generate_models.py.
 
-Keep this list in sync with the generator — tests import it so parametrize
+Keep this list in sync with the generator - tests import it so parametrize
 blocks cannot drift from what ``make models`` writes.
 """
 

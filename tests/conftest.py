@@ -49,5 +49,5 @@ def models_dir() -> Path:
 def load_fixture(name: str):
     path = MODELS_DIR / f"{name}.joblib"
     if not path.exists():
-        pytest.skip(f"Fixture missing: {path} — run scripts/generate_models.py")
+        pytest.skip(f"Fixture missing: {path} - run scripts/generate_models.py")
     return joblib.load(path)

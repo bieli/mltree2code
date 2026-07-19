@@ -1,4 +1,4 @@
-# Example data — DataCamp Pima Indians Diabetes
+# Example data - DataCamp Pima Indians Diabetes
 
 Used by `examples/datacamp_diabetes_demo.py` and `scripts/benchmark_diabetes.py`.
 

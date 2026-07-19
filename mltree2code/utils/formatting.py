@@ -13,7 +13,7 @@ def format_float(value: float, precision: int = 17, float_suffix: str = "") -> s
     Using too few significant digits (e.g. 6) can change ``<=`` decisions when a
     feature value sits on a sklearn threshold boundary.
     """
-    # Cap at 17 significant digits — enough for IEEE-754 binary64 round-trips.
+    # Cap at 17 significant digits - enough for IEEE-754 binary64 round-trips.
     digits = max(1, min(precision, 17))
     formatted = format(float(value), f".{digits}g")
     if "." not in formatted and "e" not in formatted.lower():

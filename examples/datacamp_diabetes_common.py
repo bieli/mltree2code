@@ -83,7 +83,7 @@ def train_datacamp_diabetes_tree(
     Parameters
     ----------
     pruned:
-        If False (default), fit ``DecisionTreeClassifier(random_state=4)`` —
+        If False (default), fit ``DecisionTreeClassifier(random_state=4)`` -
         the large tree matching ``datacamp_diabetes_tree.png``.
         If True, fit ``DecisionTreeClassifier(criterion="entropy", max_depth=3)``
         as in the article's optimization section.

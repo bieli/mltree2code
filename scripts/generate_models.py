@@ -27,7 +27,7 @@ from tests.model_fixtures import MODEL_FIXTURES, OBSOLETE_FIXTURES  # noqa: E402
 def _save(name: str, model) -> None:
     if name not in MODEL_FIXTURES:
         raise ValueError(
-            f"Unknown fixture {name!r} — add it to tests/model_fixtures.py first"
+            f"Unknown fixture {name!r} - add it to tests/model_fixtures.py first"
         )
     path = OUT / f"{name}.joblib"
     joblib.dump(model, path)
