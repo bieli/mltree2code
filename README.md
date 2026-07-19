@@ -139,6 +139,7 @@ mltree2code MODEL LANGUAGE [options]
 make install          # editable install + dev deps
 make models           # generate test fixtures
 make test             # pytest
+make bench            # sklearn vs generated Python if-else latency
 make lint             # ruff
 UPDATE_GOLDEN=1 make test  # refresh golden snapshots
 ```

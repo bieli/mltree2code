@@ -1,4 +1,4 @@
-.PHONY: install models test lint clean demo
+.PHONY: install models test lint bench demo clean
 
 install:
 	pip install -e ".[dev]"
@@ -11,6 +11,9 @@ test: models
 
 lint:
 	ruff check mltree2code tests scripts examples
+
+bench:
+	python scripts/benchmark_inference.py
 
 demo:
 	python examples/iris_demo.py

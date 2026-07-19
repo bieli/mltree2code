@@ -6,13 +6,17 @@
 2. **Integration / semantic** — generated Python `predict` must match
    `model.predict` on random and fixture vectors (`tests/integration/`).
 3. **Golden** — formatting snapshots per language (`tests/golden/`).
-4. **Fixtures** — diverse sklearn trees from `scripts/generate_models.py`.
+4. **Performance** — single-sample sklearn vs generated Python if-else
+   (`tests/performance/`, marked `@pytest.mark.slow`).
+5. **Fixtures** — diverse sklearn trees from `scripts/generate_models.py`.
 
 ## Commands
 
 ```bash
 python scripts/generate_models.py
 pytest -q
+pytest -q -m slow                  # include performance tests
+make bench                         # printable latency comparison
 UPDATE_GOLDEN=1 pytest tests/golden -q   # refresh snapshots
 ```
 
