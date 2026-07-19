@@ -1,4 +1,4 @@
-.PHONY: install models test lint bench bench-diabetes demo demo-diabetes clean
+.PHONY: install models test lint bench bench-diabetes compare-diabetes demo demo-diabetes clean
 
 install:
 	pip install -e ".[dev]"
@@ -17,6 +17,9 @@ bench:
 
 bench-diabetes:
 	python scripts/benchmark_diabetes.py
+
+compare-diabetes:
+	python scripts/compare_diabetes_quality.py --sweep
 
 demo:
 	python examples/iris_demo.py

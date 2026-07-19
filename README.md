@@ -164,6 +164,45 @@ summary (single-sample path, median over runs)
   speedup:   666.15x  (generated is faster when > 1)
 ```
 
+## You can see, what precision we have in case of if-else representaion of ML decission tree
+```bash
+$ make compare-diabetes 
+python scripts/compare_diabetes_quality.py --sweep
+DataCamp diabetes prediction quality
+  model:     unpruned (DataCamp PNG tree)
+  split:     test
+  precision: 17
+
+Hard labels (class index)
+  samples:            231
+  matches:            231
+  mismatches:         0
+  agreement:          100.000000%
+  sklearn vs y_true:  67.5325% accuracy
+  if-else vs y_true:  67.5325% accuracy
+
+Class probabilities (sklearn.predict_proba vs generated return [...])
+  max |Δp|:           0.000000e+00
+  mean |Δp|:          0.000000e+00
+  mean L2(Δp):        0.000000e+00
+  max  L2(Δp):        0.000000e+00
+
+Threshold emission error at precision=17
+  split thresholds:   103
+  max |thr' - thr|:   0.000000e+00
+  mean |thr' - thr|:  0.000000e+00
+  RMS |thr' - thr|:   0.000000e+00
+
+Precision sweep (test label agreement + max |Δp| + max |Δthr|)
+  prec      agree%   mism       max|Δp|     max|Δthr|
+     6   99.567100      1  1.000000e+00  1.144409e-06
+     8   99.567100      1  1.000000e+00  4.277954e-07
+    10  100.000000      0  0.000000e+00  4.409181e-09
+    12  100.000000      0  0.000000e+00  3.945644e-11
+    15  100.000000      0  0.000000e+00  4.973799e-14
+    17  100.000000      0  0.000000e+00  0.000000e+00
+```
+
 ### DataCamp diabetes tree (article case)
 
 Same recipe as the [DataCamp decision-tree tutorial](https://www.datacamp.com/tutorial/decision-tree-classification-python)
@@ -172,6 +211,7 @@ Same recipe as the [DataCamp decision-tree tutorial](https://www.datacamp.com/tu
 ```bash
 make demo-diabetes          # train + print generated Python if-else
 make bench-diabetes         # sklearn vs if-else single-sample latency
+make compare-diabetes       # label/proba/threshold float-domain quality
 python examples/datacamp_diabetes_demo.py --pruned   # article entropy depth=3 tree
 ```
 
@@ -183,6 +223,7 @@ make models           # generate test fixtures
 make test             # pytest
 make bench            # sklearn vs generated Python if-else latency
 make bench-diabetes   # DataCamp diabetes tree benchmark
+make compare-diabetes # sklearn vs if-else prediction quality (floats)
 make demo-diabetes    # DataCamp diabetes -> if-else demo
 make lint             # ruff
 UPDATE_GOLDEN=1 make test  # refresh golden snapshots
