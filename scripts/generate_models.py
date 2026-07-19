@@ -33,7 +33,7 @@ def main() -> None:
     for depth in (1, 2, 3, 5):
         clf = DecisionTreeClassifier(max_depth=depth, random_state=42)
         clf.fit(iris.data, iris.target)
-        _save(f"iris_classifiers_at_various_depths{depth}", clf)
+        _save(f"iris_depth{depth}", clf)
 
     wine = load_wine()
     for depth in (2, 5):
@@ -89,7 +89,7 @@ def main() -> None:
     y = np.array([0, 0, 1, 1])
     clf = DecisionTreeClassifier(max_depth=1, random_state=0)
     clf.fit(X, y)
-    _save("tiny_edge_cases_binary_depth1", clf)
+    _save("tiny_binary_depth1", clf)
 
     print("=== Done.")
 
