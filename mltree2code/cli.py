@@ -30,10 +30,91 @@ def build_parser() -> argparse.ArgumentParser:
         nargs="?",
         help="Target language (" + "|".join(SUPPORTED_LANGUAGES) + ")",
     )
+    parser.add_argument("-m", "--model", dest="model_opt", help="Model path (alt)")
+    parser.add_argument("-l", "--lang", dest="lang_opt", help="Target language (alt)")
     parser.add_argument(
         "-o",
         "--output",
         help="Write code to FILE instead of stdout",
+    )
+    parser.add_argument(
+        "--function-name",
+        default="predict",
+        help="Name of the generated predict function (default: predict)",
+    )
+    parser.add_argument(
+        "--float-type",
+        choices=("float", "double"),
+        default="float",
+        help="Floating-point type for C/C++ (default: float)",
+    )
+    parser.add_argument(
+        "--indent",
+        type=int,
+        default=4,
+        help="Spaces per indent level (default: 4); use 0 with --tabs",
+    )
+    parser.add_argument(
+        "--tabs",
+        action="store_true",
+        help="Indent with tabs instead of spaces",
+    )
+    parser.add_argument(
+        "--precision",
+        type=int,
+        default=6,
+        help="Float formatting precision (default: 6)",
+    )
+    parser.add_argument(
+        "--namespace",
+        default=None,
+        help="Namespace / package for C++, Java, Rust-style backends",
+    )
+    parser.add_argument(
+        "--header",
+        action="store_true",
+        help="Emit extra includes suitable for C/C++ headers",
+    )
+    parser.add_argument(
+        "--probabilities",
+        action="store_true",
+        help="Emit class probability distributions instead of hard labels",
+    )
+    parser.add_argument(
+        "--class-names",
+        default=None,
+        help="Comma-separated class names",
+    )
+    parser.add_argument(
+        "--feature-names",
+        default=None,
+        help="Comma-separated feature names",
+    )
+    parser.add_argument(
+        "--use-feature-names",
+        action="store_true",
+        help="Reference features by name when valid identifiers",
+    )
+    parser.add_argument(
+        "--optimize",
+        action="store_true",
+        help="Apply IR optimizations (merge identical sibling leaves)",
+    )
+    parser.add_argument(
+        "--no-comments",
+        action="store_true",
+        help="Omit auto-generated header comments",
+    )
+    parser.add_argument(
+        "--list-languages",
+        action="store_true",
+        help="Print supported languages and exit",
+    )
+    parser.add_argument(
+        "-V",
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
     )
     return parser
 

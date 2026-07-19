@@ -34,8 +34,6 @@ def test_ir_walk(iris_model):
     model, _ = iris_model
     tree = parse_sklearn_tree(model)
     nodes = list(tree.walk())
-    assert len(nodes) == tree.leaf_count() + sum(
-        1 for n in nodes if isinstance(n, Node)
-    )
+    assert len(nodes) == tree.leaf_count() + sum(1 for n in nodes if isinstance(n, Node))
     leaves = [n for n in nodes if isinstance(n, Leaf)]
     assert all(isinstance(leaf.prediction, int) for leaf in leaves)

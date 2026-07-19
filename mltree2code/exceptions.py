@@ -16,4 +16,3 @@ class ModelLoadError(Mltree2codeError):
 
 class ParseError(Mltree2codeError):
     pass
-

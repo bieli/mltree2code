@@ -43,9 +43,7 @@ def get_generator(language: str, options: EmitOptions | None = None) -> BaseGene
     cls = GENERATORS.get(key)
     if cls is None:
         supported = ", ".join(SUPPORTED_LANGUAGES)
-        raise UnsupportedLanguageError(
-            f"Unsupported language '{language}'. Supported: {supported}"
-        )
+        raise UnsupportedLanguageError(f"Unsupported language '{language}'. Supported: {supported}")
     return cls(options=options)
 
 

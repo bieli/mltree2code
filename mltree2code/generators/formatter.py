@@ -6,4 +6,3 @@ def normalize_newlines(code: str) -> str:
     if not code.endswith("\n"):
         code += "\n"
     return code
-

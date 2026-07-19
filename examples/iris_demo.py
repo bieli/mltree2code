@@ -6,7 +6,6 @@ from sklearn.tree import DecisionTreeClassifier
 from mltree2code import convert
 from mltree2code.generators import SUPPORTED_LANGUAGES
 
-
 iris = load_iris()
 model = DecisionTreeClassifier(max_depth=2, random_state=42)
 model.fit(iris.data, iris.target)

@@ -88,4 +88,3 @@ class BaseGenerator(ABC):
 
     def emit_node(self, node: Node, tree: TreeIR, level: int) -> None:
         raise NotImplementedError
-
