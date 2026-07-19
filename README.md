@@ -12,6 +12,8 @@ Many **SOC** and **IoT / IIoT** pipelines need decision-tree decisions in the ho
 packet/feature triage, anomaly flags, thresholded sensor rules - but cannot afford a full
 ML runtime on every hop or device.
 
+**Main motivator is performance minimum 500x faster comparing to typical Python ML libs in inference time!!!**
+
 Typical constraints that push teams toward generated `if`/`else` trees:
 
 - **Latency** - native C/C++/Rust (or MicroPython on MCUs) avoids Python/sklearn call
