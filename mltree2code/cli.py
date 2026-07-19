@@ -62,8 +62,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--precision",
         type=int,
-        default=6,
-        help="Float formatting precision (default: 6)",
+        default=17,
+        help="Float formatting precision / significant digits (default: 17)",
     )
     parser.add_argument(
         "--namespace",

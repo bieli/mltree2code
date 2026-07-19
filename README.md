@@ -121,7 +121,7 @@ mltree2code MODEL LANGUAGE [options]
   --float-type float|double  C/C++ float type
   --indent N                 Spaces per indent (default: 4)
   --tabs                     Use tab indentation
-  --precision N              Float format precision
+  --precision N              Float format precision (default: 17)
   --namespace NAME           C++/Java package or namespace
   --header                   Emit C/C++ includes
   --probabilities            Emit class probabilities
@@ -162,6 +162,17 @@ summary (single-sample path, median over runs)
   speedup:   666.15x  (generated is faster when > 1)
 ```
 
+### DataCamp diabetes tree (article case)
+
+Same recipe as the [DataCamp decision-tree tutorial](https://www.datacamp.com/tutorial/decision-tree-classification-python)
+(Pima Indians Diabetes, unpruned tree = reference PNG under `examples/data/`).
+
+```bash
+make demo-diabetes          # train + print generated Python if-else
+make bench-diabetes         # sklearn vs if-else single-sample latency
+python examples/datacamp_diabetes_demo.py --pruned   # article entropy depth=3 tree
+```
+
 ## Development
 
 ```bash
@@ -169,6 +180,8 @@ make install          # editable install + dev deps
 make models           # generate test fixtures
 make test             # pytest
 make bench            # sklearn vs generated Python if-else latency
+make bench-diabetes   # DataCamp diabetes tree benchmark
+make demo-diabetes    # DataCamp diabetes -> if-else demo
 make lint             # ruff
 UPDATE_GOLDEN=1 make test  # refresh golden snapshots
 ```

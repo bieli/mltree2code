@@ -12,7 +12,7 @@ class EmitOptions:
     function_name: str = "predict"
     indent: int = 4
     use_tabs: bool = False
-    float_precision: int = 6
+    float_precision: int = 17
     float_type: str = "float"
     class_names: list[str] | None = None
     feature_names: list[str] | None = None

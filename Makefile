@@ -1,4 +1,4 @@
-.PHONY: install models test lint bench demo clean
+.PHONY: install models test lint bench bench-diabetes demo demo-diabetes clean
 
 install:
 	pip install -e ".[dev]"
@@ -15,8 +15,14 @@ lint:
 bench:
 	python scripts/benchmark_inference.py
 
+bench-diabetes:
+	python scripts/benchmark_diabetes.py
+
 demo:
 	python examples/iris_demo.py
+
+demo-diabetes:
+	python examples/datacamp_diabetes_demo.py
 
 clean:
 	rm -rf build dist *.egg-info .pytest_cache .ruff_cache htmlcov .coverage

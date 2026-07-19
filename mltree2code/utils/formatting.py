@@ -7,8 +7,15 @@ def indent_str(level: int, size: int = 4, use_tabs: bool = False) -> str:
     return " " * (size * level)
 
 
-def format_float(value: float, precision: int = 6, float_suffix: str = "") -> str:
-    formatted = f"{value:.{precision}g}"
+def format_float(value: float, precision: int = 17, float_suffix: str = "") -> str:
+    """Format floats for source emission with enough digits for float64 round-trip.
+
+    Using too few significant digits (e.g. 6) can change ``<=`` decisions when a
+    feature value sits on a sklearn threshold boundary.
+    """
+    # Cap at 17 significant digits — enough for IEEE-754 binary64 round-trips.
+    digits = max(1, min(precision, 17))
+    formatted = format(float(value), f".{digits}g")
     if "." not in formatted and "e" not in formatted.lower():
         formatted += ".0"
     return formatted + float_suffix
