@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mltree2code"
+version = "0.1.0"
+description = "Transpile Machine Learning decision trees into readable if-else source code"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [
+    { name = "Marcin Bielak <marcin.bieli+github+mltree2code@gmail.com>" },
+]
+keywords = [
+    "machine-learning",
+    "decision-tree",
+    "codegen",
+    "transpiler",
+    "scikit-learn",
+    "embedded",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Code Generators",
+]
+dependencies = [
+    "scikit-learn>=1.0",
+    "joblib>=1.0",
+    "numpy>=1.20",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.4",
+]
+
+[project.scripts]
+mltree2code = "mltree2code.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/bieli/mltree2code"
+Repository = "https://github.com/bieli/mltree2code"
+Issues = "https://github.com/bieli/mltree2code/issues"
+Changelog = "https://github.com/bieli/mltree2code/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+include = ["mltree2code*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+    "slow: marks tests as slow",
+    "crosslang: marks cross-language compilation tests",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B"]
