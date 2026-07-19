@@ -6,7 +6,7 @@ blocks cannot drift from what ``make models`` writes.
 
 from __future__ import annotations
 
-# Order: shallow → deep iris, then other datasets / synthetics.
+# Order: shallow -> deep iris, then other datasets / synthetics.
 MODEL_FIXTURES: tuple[str, ...] = (
     "iris_depth1",
     "iris_depth2",

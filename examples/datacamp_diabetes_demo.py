@@ -86,7 +86,7 @@ def main(argv: list[str] | None = None) -> int:
             use_feature_names=False,
         ),
     )
-    print(f"=== mltree2code → {args.lang} ===")
+    print(f"=== mltree2code -> {args.lang} ===")
     if args.output:
         Path(args.output).write_text(code, encoding="utf-8")
         print(f"wrote {args.output} ({len(code.splitlines())} lines)")

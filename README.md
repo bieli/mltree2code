@@ -1,6 +1,6 @@
 # mltree2code
 
-**Machine Learning Tree -> Code** — transpile Machine Learning scikit-learn decision trees into
+**Machine Learning Tree -> Code** - transpile Machine Learning scikit-learn decision trees into
 readable `if`/`else` source for Python, MicroPython, C, C++, Rust, JavaScript, and Java.
 
 Ideal for embedding trained trees on microcontrollers, browsers, or any environment
@@ -8,21 +8,21 @@ where you want plain source instead of a runtime ML dependency.
 
 ## Motivators
 
-Many **SOC** and **IoT / IIoT** pipelines need decision-tree decisions in the hot path —
-packet/feature triage, anomaly flags, thresholded sensor rules — but cannot afford a full
+Many **SOC** and **IoT / IIoT** pipelines need decision-tree decisions in the hot path -
+packet/feature triage, anomaly flags, thresholded sensor rules - but cannot afford a full
 ML runtime on every hop or device.
 
 Typical constraints that push teams toward generated `if`/`else` trees:
 
-- **Latency** — native C/C++/Rust (or MicroPython on MCUs) avoids Python/sklearn call
+- **Latency** - native C/C++/Rust (or MicroPython on MCUs) avoids Python/sklearn call
   overhead and interpreter cost when scoring thousands of events per second.
-- **Footprint** — edge gateways, PLCs, and constrained sensors often have no room for
+- **Footprint** - edge gateways, PLCs, and constrained sensors often have no room for
   NumPy/scikit-learn; a few dozen lines of compiled conditions fit in flash/RAM.
-- **Determinism & audit** — plain branches are easy to review, unit-test, and ship under
+- **Determinism & audit** - plain branches are easy to review, unit-test, and ship under
   change-control (useful for SOC playbooks and industrial safety/compliance reviews).
-- **Offline / air-gapped** — inference must keep working without model servers or cloud
+- **Offline / air-gapped** - inference must keep working without model servers or cloud
   round-trips; the tree ships as firmware or a small library.
-- **Same model, many targets** — train once in sklearn, emit C for a sensor node, Rust for
+- **Same model, many targets** - train once in sklearn, emit C for a sensor node, Rust for
   a gateway, and JavaScript for an operator console without retraining.
 
 `mltree2code` turns that workflow into a one-step transpile: train offline, generate
@@ -190,4 +190,4 @@ See [docs/](docs/) for Intermediate Representation (IR) design, extending genera
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT - see [LICENSE](LICENSE).

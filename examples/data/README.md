@@ -16,7 +16,7 @@ From [Decision Tree Classification in Python](https://www.datacamp.com/tutorial/
 ```text
 feature_cols = ['pregnant', 'insulin', 'bmi', 'age', 'glucose', 'bp', 'pedigree']
 train_test_split(..., test_size=0.3, random_state=1)
-DecisionTreeClassifier()                          # unpruned → reference PNG
+DecisionTreeClassifier()                          # unpruned -> reference PNG
 DecisionTreeClassifier(criterion="entropy", max_depth=3)  # pruned section
 ```
 

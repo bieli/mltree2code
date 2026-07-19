@@ -19,7 +19,7 @@ Leaf(prediction=1, probabilities=[0.0, 1.0, 0.0])
 | Type | Meaning |
 |------|---------|
 | `Leaf` | Terminal prediction (class index or float) |
-| `Node` | Split: `x[feature] <= threshold` → left, else right |
+| `Node` | Split: `x[feature] <= threshold` -> left, else right |
 | `TreeIR` | Root + metadata (`n_features`, `n_classes`, names, task) |
 
 Sklearn uses the same left/right convention (`children_left` / `children_right`

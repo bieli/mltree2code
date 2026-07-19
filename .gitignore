@@ -194,3 +194,4 @@ cython_debug/
 .pypirc
 
 mltree2code.egg-info/*
+tests/golden/snapshots/*

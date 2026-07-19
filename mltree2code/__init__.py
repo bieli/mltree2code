@@ -1,7 +1,7 @@
 from mltree2code.emitter import convert, convert_file
 from mltree2code.ir import Leaf, Node, TreeIR
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 __all__ = [
     "Leaf",
     "Node",
