@@ -8,7 +8,8 @@
 3. **Golden** — formatting snapshots per language (`tests/golden/`).
 4. **Performance** — single-sample sklearn vs generated Python if-else
    (`tests/performance/`, marked `@pytest.mark.slow`).
-5. **Fixtures** — diverse sklearn trees from `scripts/generate_models.py`.
+5. **Fixtures** — names live in `tests/model_fixtures.py`;
+   `scripts/generate_models.py` writes the same set (`make models`).
 
 ## Commands
 

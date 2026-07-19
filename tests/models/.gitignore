@@ -1,0 +1,4 @@
+# Auto-generated decision tree fixtures (joblib).
+# Regenerate with: python scripts/generate_models.py
+*
+!.gitignore

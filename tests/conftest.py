@@ -7,7 +7,19 @@ import pytest
 from sklearn.datasets import load_iris
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 
+from tests.model_fixtures import MODEL_FIXTURES, OBSOLETE_FIXTURES
+
 MODELS_DIR = Path(__file__).parent / "models"
+
+__all__ = [
+    "MODELS_DIR",
+    "MODEL_FIXTURES",
+    "OBSOLETE_FIXTURES",
+    "load_fixture",
+    "iris_model",
+    "regressor_model",
+    "models_dir",
+]
 
 
 @pytest.fixture

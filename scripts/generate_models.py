@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 import joblib
@@ -18,11 +19,32 @@ from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "tests" / "models"
 
+# Import canonical fixture names (same list tests parametrize over).
+sys.path.insert(0, str(ROOT))
+from tests.model_fixtures import MODEL_FIXTURES, OBSOLETE_FIXTURES  # noqa: E402
+
 
 def _save(name: str, model) -> None:
+    if name not in MODEL_FIXTURES:
+        raise ValueError(
+            f"Unknown fixture {name!r} — add it to tests/model_fixtures.py first"
+        )
     path = OUT / f"{name}.joblib"
     joblib.dump(model, path)
     print(f"  wrote {path.relative_to(ROOT)}")
+
+
+def _cleanup_stale() -> None:
+    expected = {f"{name}.joblib" for name in MODEL_FIXTURES}
+    for path in sorted(OUT.glob("*.joblib")):
+        if path.name not in expected:
+            path.unlink()
+            print(f"  removed stale {path.relative_to(ROOT)}")
+    for name in OBSOLETE_FIXTURES:
+        path = OUT / f"{name}.joblib"
+        if path.exists():
+            path.unlink()
+            print(f"  removed obsolete {path.relative_to(ROOT)}")
 
 
 def main() -> None:
@@ -91,7 +113,13 @@ def main() -> None:
     clf.fit(X, y)
     _save("tiny_binary_depth1", clf)
 
-    print("=== Done.")
+    _cleanup_stale()
+
+    written = {p.stem for p in OUT.glob("*.joblib")}
+    missing = set(MODEL_FIXTURES) - written
+    if missing:
+        raise SystemExit(f"Missing fixtures after generate: {sorted(missing)}")
+    print(f"=== Done. {len(MODEL_FIXTURES)} fixtures ready.")
 
 
 if __name__ == "__main__":
