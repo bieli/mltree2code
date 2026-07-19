@@ -38,4 +38,4 @@ def test_golden_iris_depth2(lang):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(code, encoding="utf-8")
         pytest.skip(f"created golden {path}")
-    assert code == path.read_text(encoding="utf-8")/
+    assert code == path.read_text(encoding="utf-8")
