@@ -10,6 +10,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         python-version: ["3.9", "3.10", "3.11", "3.12"]
 
@@ -32,10 +33,51 @@ jobs:
       - name: Lint
         run: ruff check mltree2code tests scripts examples
 
-      - name: Test
-        run: pytest -q --cov=mltree2code --cov-report=xml
+      - name: Test with coverage
+        run: |
+          pytest -q \
+            --cov=mltree2code \
+            --cov-branch \
+            --cov-report=term-missing:skip-covered \
+            --cov-report=xml:coverage.xml \
+            --cov-report=html:htmlcov \
+            --cov-report=markdown:coverage.md
 
-      - name: Upload coverage
+      - name: Coverage summary (per file)
+        if: always() && matrix.python-version == '3.12'
+        run: |
+          {
+            echo "## Coverage report (Python ${{ matrix.python-version }})"
+            echo
+            echo "Per-file line + branch coverage for \`mltree2code\`:"
+            echo
+            if [ -f coverage.md ]; then
+              cat coverage.md
+            else
+              python -m coverage report --show-missing --format=markdown
+            fi
+            echo
+            echo "<details><summary>Full terminal report (all files)</summary>"
+            echo
+            echo '```'
+            python -m coverage report --show-missing
+            echo '```'
+            echo
+            echo "</details>"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload coverage artifacts
+        if: matrix.python-version == '3.12'
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: |
+            coverage.xml
+            coverage.md
+            htmlcov/
+          retention-days: 14
+
+      - name: Upload coverage to Codecov
         if: matrix.python-version == '3.12'
         uses: codecov/codecov-action@v4
         with:
