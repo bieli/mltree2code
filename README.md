@@ -133,6 +133,35 @@ mltree2code MODEL LANGUAGE [options]
   --list-languages           Print backends and exit
 ```
 
+## Benchmarks - said if-else logic as decision tree is 666x faster !!!
+```bash
+$ make bench 
+python scripts/benchmark_inference.py
+mltree2code inference benchmark
+  dataset=cancer  max_depth=8
+  samples=200  repeats=25  runs=3
+
+run 1/3
+  sklearn DecisionTree.predict([x]):    116.42 µs/call  (8,590 calls/s)  n=5000
+  generated Python if-else predict(x):      0.19 µs/call  (5,294,731 calls/s)  n=5000
+  speedup (sklearn / generated): 616.41x
+
+run 2/3
+  sklearn DecisionTree.predict([x]):    117.05 µs/call  (8,543 calls/s)  n=5000
+  generated Python if-else predict(x):      0.18 µs/call  (5,691,099 calls/s)  n=5000
+  speedup (sklearn / generated): 666.15x
+
+run 3/3
+  sklearn DecisionTree.predict([x]):    116.35 µs/call  (8,594 calls/s)  n=5000
+  generated Python if-else predict(x):      0.17 µs/call  (5,797,330 calls/s)  n=5000
+  speedup (sklearn / generated): 674.55x
+
+summary (single-sample path, median over runs)
+  sklearn:   116.35 µs/call
+  if-else:   0.17 µs/call
+  speedup:   666.15x  (generated is faster when > 1)
+```
+
 ## Development
 
 ```bash
