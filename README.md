@@ -1,5 +1,8 @@
 # mltree2code
 
+[![codecov](https://codecov.io/gh/bieli/mltree2code/graph/badge.svg?token=BSNOK3W9VP)](https://codecov.io/gh/bieli/mltree2code)
+
+
 **Machine Learning Tree -> Code** - transpile Machine Learning scikit-learn decision trees into
 readable `if`/`else` source for Python, MicroPython, C, C++, Rust, JavaScript, and Java.
 
