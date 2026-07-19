@@ -2,17 +2,39 @@ from __future__ import annotations
 
 from mltree2code.exceptions import UnsupportedLanguageError
 from mltree2code.generators.base import BaseGenerator, EmitOptions
+from mltree2code.generators.c import CGenerator
+from mltree2code.generators.cpp import CppGenerator
+from mltree2code.generators.java import JavaGenerator
+from mltree2code.generators.javascript import JavaScriptGenerator
+from mltree2code.generators.micropython import MicroPythonGenerator
 from mltree2code.generators.python import PythonGenerator
+from mltree2code.generators.rust import RustGenerator
 
-# Canonical language name → generator class
 GENERATORS: dict[str, type[BaseGenerator]] = {
     "python": PythonGenerator,
     "py": PythonGenerator,
+    "micropython": MicroPythonGenerator,
+    "upy": MicroPythonGenerator,
+    "c": CGenerator,
+    "cpp": CppGenerator,
+    "c++": CppGenerator,
+    "cxx": CppGenerator,
+    "rust": RustGenerator,
+    "rs": RustGenerator,
+    "javascript": JavaScriptGenerator,
+    "js": JavaScriptGenerator,
+    "node": JavaScriptGenerator,
+    "java": JavaGenerator,
 }
 
-# Unique display names for help text
 SUPPORTED_LANGUAGES = (
     "python",
+    "micropython",
+    "c",
+    "cpp",
+    "rust",
+    "javascript",
+    "java",
 )
 
 
