@@ -43,6 +43,11 @@ jobs:
             --cov-report=html:htmlcov \
             --cov-report=markdown:coverage.md
 
+      - name: Upload coverage reports to Codecov
+          uses: codecov/codecov-action@v5
+          with:
+            token: ${{ secrets.CODECOV_TOKEN }}
+
       - name: Coverage summary (per file)
         if: always() && matrix.python-version == '3.12'
         run: |
